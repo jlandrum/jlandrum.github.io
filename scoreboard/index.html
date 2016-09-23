@@ -9,7 +9,7 @@
 			var mDevice;
 			$(function() {
 				$('#start').on('click',function() {
-					navigator.bluetooth.requestDevice({ filters: [{ services: ['battery_service'] }] })
+					navigator.bluetooth.requestDevice({ filters: [{ services: ['0000f00d-1212-efde-1523-785fef17d525'] }] })
 					.then(device => { mDevice = device; })
 					.catch(error => { console.log(error); });
 				});
