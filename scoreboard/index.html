@@ -8,7 +8,8 @@
 		<b>Away:</b><input id="away" value="0" min=0 max=99 type="number"/><br/>
 		<b>Minute:</b><input id="min" value="0" min=0 max=99 type="number"/><br/>
 		<b>Second:</b><input id="sec" value="0" min=0 max=99 type="number"/><br/>
-		<b>Period:</b><input id="period" value="0" min=0 max=99 type="number"/><br/>
+		<b>Period:</b><input id="period" value="0" min=0 max=99 type="number"/><br/><br/>
+		<b>Timer Start/Stop:</b><input id="startstop" value="0" min="0" max="1" type="number"/><br/>
 
 		<script  src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
 		<script>
@@ -20,7 +21,7 @@
 					.then(server => server.getPrimaryService('0000f00e-1212-efde-1523-785fef17d525'))
 					.then (service => {
 						service.getCharacteristic('00009876-1212-efde-1523-785fef17d525').then(cha => { cHome = cha; });
-						return service.getCharacteristic('00009877-1212-efde-1523-785fef17d525').then(cha => { cAway = cha; });
+						service.getCharacteristic('00009877-1212-efde-1523-785fef17d525').then(cha => { cAway = cha; });
 						service.getCharacteristic('00009878-1212-efde-1523-785fef17d525').then(cha => { cMinute = cha; });
 						service.getCharacteristic('00009879-1212-efde-1523-785fef17d525').then(cha => { cSecond = cha; });
 						service.getCharacteristic('00009880-1212-efde-1523-785fef17d525').then(cha => { cStartStop = cha; });
@@ -43,13 +44,20 @@
 					})
 					.catch(error => { console.log(error); });
 				});
-			});
+
+				$('.home').on('change', function() {cHome.writeValue(new Uint8Array([$('.home').val()]);});
+				$('.away').on('change', function() {cHome.writeValue(new Uint8Array([$('.home').val()]);});  
+				$('.min').on('change', function() {cHome.writeValue(new Uint8Array([$('.home').val()]);});  
+				$('.sec').on('change', function() {cHome.writeValue(new Uint8Array([$('.home').val()]);});  
+				$('.startstop').on('change', function() {cHome.writeValue(new Uint8Array([$('.home').val()]);});  
+				$('.period').on('change', function() {cHome.writeValue(new Uint8Array([$('.home').val()]);});  
+			});		
 
 			function handleHomeChange(event) { $('#home').val(event.target.value.getUint8(0)); }
 			function handleAwayChange(event) { $('#away').val(event.target.value.getUint8(0)); }
 			function handleMinuteChange(event) { $('#minute').val(event.target.value.getUint8(0)); }
 			function handleSecondChange(event) { $('#second').val(event.target.value.getUint8(0)); }
-			function handleStartStopChange(event) { /*$('#startstop').val(event.target.value.getUint8(0)); */ }
+			function handleStartStopChange(event) { $('#startstop').val(event.target.value.getUint8(0));  }
 			function handleDownChange(event) { $('#period').val(event.target.value.getUint8(0)); }
 
 
