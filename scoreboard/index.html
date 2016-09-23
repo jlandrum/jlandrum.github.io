@@ -13,12 +13,12 @@
 					.then(device => device.gatt.connect())
 					.then(server => server.getPrimaryService('0000f00e-1212-efde-1523-785fef17d525'))
 					.then (service => {
-						service.getCharacteristic('0x9876').then(cha => { mHome = cha; });
-						service.getCharacteristic('0x9877').then(cha => { mAway = cha; });
-						service.getCharacteristic('0x9878').then(cha => { mMinute = cha; });
-						service.getCharacteristic('0x9879').then(cha => { mSecond = cha; });
-						service.getCharacteristic('0x9880').then(cha => { mStartStop = cha; });
-						service.getCharacteristic('0x9881').then(cha => { mDowm = cha; });
+						service.getCharacteristic('00009876-1212-efde-1523-785fef17d525').then(cha => { mHome = cha; });
+						service.getCharacteristic('00009877-1212-efde-1523-785fef17d525').then(cha => { mAway = cha; });
+						service.getCharacteristic('00009878-1212-efde-1523-785fef17d525').then(cha => { mMinute = cha; });
+						service.getCharacteristic('00009879-1212-efde-1523-785fef17d525').then(cha => { mSecond = cha; });
+						service.getCharacteristic('00009880-1212-efde-1523-785fef17d525').then(cha => { mStartStop = cha; });
+						service.getCharacteristic('00009881-1212-efde-1523-785fef17d525').then(cha => { mDowm = cha; });
 					})
 					.catch(error => { console.log(error); });
 				});
