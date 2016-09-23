@@ -20,19 +20,19 @@
 					.then(server => server.getPrimaryService('0000f00e-1212-efde-1523-785fef17d525'))
 					.then (service => {
 						service.getCharacteristic('00009876-1212-efde-1523-785fef17d525').then(cha => { cHome = cha; });
-						service.getCharacteristic('00009877-1212-efde-1523-785fef17d525').then(cha => { cAway = cha; });
-						service.getCharacteristic('00009878-1212-efde-1523-785fef17d525').then(cha => { cMinute = cha; });
-						service.getCharacteristic('00009879-1212-efde-1523-785fef17d525').then(cha => { cSecond = cha; });
-						service.getCharacteristic('00009880-1212-efde-1523-785fef17d525').then(cha => { cStartStop = cha; });
-						return service.getCharacteristic('00009881-1212-efde-1523-785fef17d525').then(cha => { cDown = cha; });
+						return service.getCharacteristic('00009877-1212-efde-1523-785fef17d525').then(cha => { cAway = cha; });
+						//service.getCharacteristic('00009878-1212-efde-1523-785fef17d525').then(cha => { cMinute = cha; });
+						//service.getCharacteristic('00009879-1212-efde-1523-785fef17d525').then(cha => { cSecond = cha; });
+						//service.getCharacteristic('00009880-1212-efde-1523-785fef17d525').then(cha => { cStartStop = cha; });
+						//return service.getCharacteristic('00009881-1212-efde-1523-785fef17d525').then(cha => { cDown = cha; });
 					})
 					.then (d=> {
 						cHome.addEventListener('characteristicvaluechanged', handleHomeChange);
 						cAway.addEventListener('characteristicvaluechanged', handleAwayChange);
-						cMinute.addEventListener('characteristicvaluechanged', handleMinuteChange);
-						cSecond.addEventListener('characteristicvaluechanged', handleSecondChange);
-						cStartStop.addEventListener('characteristicvaluechanged', handleStartStopChange);
-						cDown.addEventListener('characteristicvaluechanged', handleDownChange);
+						//cMinute.addEventListener('characteristicvaluechanged', handleMinuteChange);
+						//cSecond.addEventListener('characteristicvaluechanged', handleSecondChange);
+						//cStartStop.addEventListener('characteristicvaluechanged', handleStartStopChange);
+						//cDown.addEventListener('characteristicvaluechanged', handleDownChange);
 					})
 					.catch(error => { console.log(error); });
 				});
@@ -44,7 +44,6 @@
 			function handleSecondChange(event) { $('#second').val(event.target.value.getUint8(0)); }
 			function handleStartStopChange(event) { /*$('#startstop').val(event.target.value.getUint8(0)); */ }
 			function handleDownChange(event) { $('#period').val(event.target.value.getUint8(0)); }
-
 
 		</script>
 	</body>
