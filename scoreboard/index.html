@@ -6,17 +6,12 @@
 		<a href="#" id="start">Start</a>
 		<script  src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
 		<script>
-			var mDevice,cHome,cAway,cMinute,cSecond,cDown,cStartStop;
+			var cHome,cAway,cMinute,cSecond,cDown,cStartStop;
 			$(function() {
 				$('#start').on('mouseup',function() {
 					navigator.bluetooth.requestDevice({ filters: [{ services: ['0000f00d-1212-efde-1523-785fef17d525'] }], optionalServices: ['0000f00e-1212-efde-1523-785fef17d525'] })
-					.then(device => { 
-						mDevice = device; 
-						return mDevice.gatt.connect();
-					})
-					.then(server => {
-						return server.getPrimaryService('0000f00e-1212-efde-1523-785fef17d525');
-					})
+					.then(device => mDevice.gatt.connect())
+					.then(server => server.getPrimaryService('0000f00e-1212-efde-1523-785fef17d525'))
 					.then (service => {
 						service.getCharacteristic('9876').then(cha => { mHome = cha; });
 						service.getCharacteristic('9877').then(cha => { mAway = cha; });
