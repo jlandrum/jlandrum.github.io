@@ -6,11 +6,25 @@
 		<a href="#" id="start">Start</a>
 		<script  src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
 		<script>
-			var mDevice;
+			var mDevice,cHome,cAway,cMinute,cSecond,cDown,cStartStop;
 			$(function() {
 				$('#start').on('click',function() {
-					navigator.bluetooth.requestDevice({ filters: [{ services: ['0000f00d-1212-efde-1523-785fef17d525'] }] })
-					.then(device => { mDevice = device; })
+					navigator.bluetooth.requestDevice({ filters: [{ services: ['0000f00d-1212-efde-1523-785fef17d525'] }], optionalServices: ['0000f00e-1212-efde-1523-785fef17d525'] })
+					.then(device => { 
+						mDevice = device; 
+						mDevice.gatt.connect();
+					})
+					.then(server => {
+						return server.getPrimaryService('0000f00e-1212-efde-1523-785fef17d525');
+					})
+					.then (service => {
+						service.getCharacteristic('9876').then(cha => { mHome = cha; });
+						service.getCharacteristic('9877').then(cha => { mAway = cha; });
+						service.getCharacteristic('9878').then(cha => { mMinute = cha; });
+						service.getCharacteristic('9879').then(cha => { mSecond = cha; });
+						service.getCharacteristic('9880').then(cha => { mStartStop = cha; });
+						service.getCharacteristic('9881').then(cha => { mDowm = cha; });
+					})
 					.catch(error => { console.log(error); });
 				});
 			});
