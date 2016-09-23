@@ -8,7 +8,7 @@
 		<script>
 			var mDevice,cHome,cAway,cMinute,cSecond,cDown,cStartStop;
 			$(function() {
-				$('#start').on('click',function() {
+				$('#start').on('mouseup',function() {
 					navigator.bluetooth.requestDevice({ filters: [{ services: ['0000f00d-1212-efde-1523-785fef17d525'] }], optionalServices: ['0000f00e-1212-efde-1523-785fef17d525'] })
 					.then(device => { 
 						mDevice = device; 
