@@ -3,7 +3,13 @@
 	<head>
 	</head>
 	<body>
-		<a href="#" id="start">Start</a>
+		<a href="#" id="start">Start</a><br/>
+		<b>Home:</b><input id="home" value="0" type="number"/><br/>
+		<b>Away:</b><input id="away" value="0" type="number"/><br/>
+		<b>Minute:</b><input id="min" value="0" type="number"/><br/>
+		<b>Second:</b><input id="sec" value="0" type="number"/><br/>
+		<b>Period:</b><input id="period" value="0" type="number"/><br/>
+
 		<script  src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
 		<script>
 			var cHome,cAway,cMinute,cSecond,cDown,cStartStop;
@@ -18,11 +24,27 @@
 						service.getCharacteristic('00009878-1212-efde-1523-785fef17d525').then(cha => { cMinute = cha; });
 						service.getCharacteristic('00009879-1212-efde-1523-785fef17d525').then(cha => { cSecond = cha; });
 						service.getCharacteristic('00009880-1212-efde-1523-785fef17d525').then(cha => { cStartStop = cha; });
-						service.getCharacteristic('00009881-1212-efde-1523-785fef17d525').then(cha => { cDowm = cha; });
+						return service.getCharacteristic('00009881-1212-efde-1523-785fef17d525').then(cha => { cDown = cha; });
+					})
+					.then (d=> {
+						cHome.addEventListener('characteristicvaluechanged', handleHomeChange);
+						cAway.addEventListener('characteristicvaluechanged', handleAwayChange);
+						cMinute.addEventListener('characteristicvaluechanged', handleMinuteChange);
+						cSecond.addEventListener('characteristicvaluechanged', handleSecondChange);
+						cStartStop.addEventListener('characteristicvaluechanged', handleStartStopChange);
+						cDown.addEventListener('characteristicvaluechanged', handleDownChange);
 					})
 					.catch(error => { console.log(error); });
 				});
 			});
+
+			function handleHomeChange(event) { $('#home').val(event.target.value.getUint8(0)); }
+			function handleAwayChange(event) { $('#away').val(event.target.value.getUint8(0)); }
+			function handleMinuteChange(event) { $('#minute').val(event.target.value.getUint8(0)); }
+			function handleSecondChange(event) { $('#second').val(event.target.value.getUint8(0)); }
+			function handleStartStopChange(event) { /*$('#startstop').val(event.target.value.getUint8(0)); */ }
+			function handleDownChange(event) { $('#period').val(event.target.value.getUint8(0)); }
+
 		</script>
 	</body>
 </html>
