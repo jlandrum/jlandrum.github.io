@@ -53,6 +53,7 @@
 				$('.period').on('input', function() {cHome.writeValue(new Uint8Array([$('.home').val()]));});  
 			});		
 
+
 			function handleHomeChange(event) { $('#home').val(event.target.value.getUint8(0)); }
 			function handleAwayChange(event) { $('#away').val(event.target.value.getUint8(0)); }
 			function handleMinuteChange(event) { $('#minute').val(event.target.value.getUint8(0)); }
