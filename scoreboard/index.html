@@ -35,6 +35,13 @@
 						cStartStop.addEventListener('characteristicvaluechanged', handleStartStopChange);
 						cDown.addEventListener('characteristicvaluechanged', handleDownChange);
 
+						cHome.startNotifications();
+						cAway.startNotifications();
+						cMinute.startNotifications();
+						cSecond.startNotifications();
+						cStartStop.startNotifications();
+						cDown.startNotifications();
+						
 						cHome.readValue();
 						cAway.readValue();
 						cMinute.readValue();
