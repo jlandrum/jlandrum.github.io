@@ -35,19 +35,21 @@
 						cStartStop.addEventListener('characteristicvaluechanged', handleStartStopChange);
 						cDown.addEventListener('characteristicvaluechanged', handleDownChange);
 
-						cHome.startNotifications();
-						cAway.startNotifications();
-						cMinute.startNotifications();
-						cSecond.startNotifications();
-						cStartStop.startNotifications();
-						cDown.startNotifications();
-						
 						cHome.readValue();
 						cAway.readValue();
 						cMinute.readValue();
 						cSecond.readValue();
 						cStartStop.readValue();
 						cDown.readValue();
+
+						setInterval(2000, function() {
+							cHome.readValue();
+							cAway.readValue();
+							cMinute.readValue();
+							cSecond.readValue();
+							cStartStop.readValue();
+							cDown.readValue();
+						});
 					})
 					.catch(error => { console.log(error); });
 				});
