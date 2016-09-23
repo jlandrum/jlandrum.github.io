@@ -45,12 +45,12 @@
 					.catch(error => { console.log(error); });
 				});
 
-				$('.home').on('change', function() {cHome.writeValue(new Uint8Array([$('.home').val()]));});
-				$('.away').on('change', function() {cHome.writeValue(new Uint8Array([$('.home').val()]));});  
-				$('.min').on('change', function() {cHome.writeValue(new Uint8Array([$('.home').val()]));});  
-				$('.sec').on('change', function() {cHome.writeValue(new Uint8Array([$('.home').val()]));});  
-				$('.startstop').on('change', function() {cHome.writeValue(new Uint8Array([$('.home').val()]));});  
-				$('.period').on('change', function() {cHome.writeValue(new Uint8Array([$('.home').val()]));});  
+				$('.home').on('input', function() {cHome.writeValue(new Uint8Array([$('.home').val()]));});
+				$('.away').on('input', function() {cHome.writeValue(new Uint8Array([$('.home').val()]));});  
+				$('.min').on('input', function() {cHome.writeValue(new Uint8Array([$('.home').val()]));});  
+				$('.sec').on('input', function() {cHome.writeValue(new Uint8Array([$('.home').val()]));});  
+				$('.startstop').on('input', function() {cHome.writeValue(new Uint8Array([$('.home').val()]));});  
+				$('.period').on('input', function() {cHome.writeValue(new Uint8Array([$('.home').val()]));});  
 			});		
 
 			function handleHomeChange(event) { $('#home').val(event.target.value.getUint8(0)); }
