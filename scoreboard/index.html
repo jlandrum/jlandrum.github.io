@@ -10,7 +10,7 @@
 			$(function() {
 				$('#start').on('mouseup',function() {
 					navigator.bluetooth.requestDevice({ filters: [{ services: ['0000f00d-1212-efde-1523-785fef17d525'] }], optionalServices: ['0000f00e-1212-efde-1523-785fef17d525'] })
-					.then(device => mDevice.gatt.connect())
+					.then(device => device.gatt.connect())
 					.then(server => server.getPrimaryService('0000f00e-1212-efde-1523-785fef17d525'))
 					.then (service => {
 						service.getCharacteristic('0x9876').then(cha => { mHome = cha; });
