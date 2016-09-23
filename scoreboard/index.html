@@ -12,7 +12,7 @@
 					navigator.bluetooth.requestDevice({ filters: [{ services: ['0000f00d-1212-efde-1523-785fef17d525'] }], optionalServices: ['0000f00e-1212-efde-1523-785fef17d525'] })
 					.then(device => { 
 						mDevice = device; 
-						mDevice.gatt.connect();
+						return mDevice.gatt.connect();
 					})
 					.then(server => {
 						return server.getPrimaryService('0000f00e-1212-efde-1523-785fef17d525');
