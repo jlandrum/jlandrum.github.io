@@ -44,7 +44,6 @@
 					})
 					.catch(error => { console.log(error); });
 				});
-
 				$('#home').on('input', function() {cHome.writeValue(new Uint8Array([$('#home').val()]));});
 				$('#away').on('input', function() {cAway.writeValue(new Uint8Array([$('#away').val()]));});  
 				$('#min').on('input', function() {cMinute.writeValue(new Uint8Array([$('#min').val()]));});  
