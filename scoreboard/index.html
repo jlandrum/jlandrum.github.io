@@ -42,14 +42,14 @@
 						cStartStop.readValue();
 						cDown.readValue();
 
-						setInterval(2000, function() {
+						setInterval(function() {
 							cHome.readValue();
 							cAway.readValue();
 							cMinute.readValue();
 							cSecond.readValue();
 							cStartStop.readValue();
 							cDown.readValue();
-						});
+						},2000);
 					})
 					.catch(error => { console.log(error); });
 				});
